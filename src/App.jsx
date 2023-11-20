@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { TeacherGroups } from './components/TeacherGroups';
+import { StudentsList } from './components/StudentsList';
 
 const router = createBrowserRouter([
   {
@@ -8,11 +10,11 @@ const router = createBrowserRouter([
   },
   {
     path: 'teacher/groups',
-    element: <div>here goes the teachers page groups</div>,
+    element: <TeacherGroups />,
   },
   {
     path: 'teacher/groups/:id/students',
-    element: <div>here goes the list of students</div>,
+    element: <StudentsList />,
   },
   {
     path: 'teacher/students/:id',
