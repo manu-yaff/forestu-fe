@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { TeacherGroups } from './components/TeacherGroups';
+import { TeacherGroups } from './components/TeacherGroups/TeacherGroups';
 import { StudentsList } from './components/StudentsList';
 
 const router = createBrowserRouter([

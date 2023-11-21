@@ -33,6 +33,10 @@ export const StudentsList = () => {
 
   return (
     <>
+      <h2>Grupo: {}</h2>
+      <h3>Buscar por nombre / apellido</h3>
+
+      <h3>Lista de alumnos</h3>
       <input onChange={(event) => filterStudents(event)} />
       <ul>
         {filteredStudents.map((student) => (
