@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { TeacherGroups } from './components/TeacherGroups/TeacherGroups';
-import { StudentsList } from './components/StudentsList';
+import { StudentsList } from './components/StudentList/StudentsList';
+
+export const API_HOST = 'http://localhost:3000';
+// export const API_HOST = 'https://forestu-manuels-projects-c65674bc.vercel.app/';
 
 const router = createBrowserRouter([
   {

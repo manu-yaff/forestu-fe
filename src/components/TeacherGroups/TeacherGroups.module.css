@@ -1,13 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sub-container {
-  /* background-color: green; */
-}
-
 .group-list {
   display: flex;
   flex-wrap: wrap;
