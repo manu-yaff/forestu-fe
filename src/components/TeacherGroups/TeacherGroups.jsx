@@ -16,8 +16,7 @@ export const TeacherGroups = () => {
     (async () => {
       setLoading(true);
       const { data } = await fetchTeacherGroups();
-      setGroups(data);
-      console.log(data);
+      setGroups(data.groups);
       setLoading(false);
     })();
   }, []);
