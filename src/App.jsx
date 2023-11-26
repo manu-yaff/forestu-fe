@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { TeacherGroups } from './components/TeacherGroups/TeacherGroups';
 import { StudentsList } from './components/StudentList/StudentsList';
+import StudentInfo from './components/Students/StudentInfo/StudentInfo';
 
 export const API_HOST = 'http://localhost:3000';
 // export const API_HOST = 'https://forestu-manuels-projects-c65674bc.vercel.app/';
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'teacher/students/:id',
-    element: <div>here goes the view of a student for the teacher</div>,
+    element: <StudentInfo />,
   },
   {
     path: 'manager/groups/:id/students',
