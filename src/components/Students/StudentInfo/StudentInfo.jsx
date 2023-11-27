@@ -77,8 +77,6 @@ const StudentInfo = () => {
             </>
           )}
 
-          {/* {loading && <p>Registrando falta</p>} */}
-
           {student.indicators && (
             <>
               <h3>Indicadores de rezago</h3>
@@ -101,7 +99,7 @@ const StudentInfo = () => {
                               width: '50%',
                               height: '50%',
                               backgroundColor:
-                                numberFaults >= 3 ? 'red' : numberFaults > 0 ? 'yellow' : 'green',
+                                numberFaults >= 3 ? 'red' : numberFaults > 0 ? '#fcba03' : 'green',
                             }}
                           ></div>
                         </td>

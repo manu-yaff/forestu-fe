@@ -5,6 +5,7 @@
 }
 
 .group-item {
+  border-radius: 8px;
   box-sizing: border-box;
   padding: 2em;
   flex-basis: 49%;
