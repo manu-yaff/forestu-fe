@@ -51,7 +51,7 @@ export const StudentsList = () => {
           <h3>Lista de alumnos</h3>
           <ul>
             {filteredStudents.map((student) => (
-              <Link to={`/teacher/students/${student.id}`} key={student.id}>
+              <Link to={`/teacher/groups/${group.id}/students/${student.id}`} key={student.id}>
                 {student.name}
               </Link>
             ))}

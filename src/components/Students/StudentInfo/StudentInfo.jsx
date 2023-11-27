@@ -4,29 +4,49 @@ import { useEffect, useState } from 'react';
 import style from './StudentInfo.module.css';
 
 const StudentInfo = () => {
-  const { id } = useParams();
+  const { studentId, groupId } = useParams();
   const [student, setStudent] = useState({});
+  const [loading, setLoading] = useState(false);
 
   async function getStudentInfo() {
-    const response = await fetch(`${API_HOST}/students/${id}`);
+    const response = await fetch(`${API_HOST}/students/${studentId}`);
     const { data } = await response.json();
     const studentInfo = data.student.student;
 
-    const responsePeriods = await fetch(`${API_HOST}/students/${id}/periods`);
+    const responsePeriods = await fetch(`${API_HOST}/students/${studentId}/periods`);
     const studentPeriodsJson = await responsePeriods.json();
     const studentPeriods = studentPeriodsJson.data.periods;
 
-    const studentIndicatorsResponse = await fetch(`${API_HOST}/students/${id}/faults`);
+    const studentIndicatorsResponse = await fetch(`${API_HOST}/students/${studentId}/faults`);
     const jsonStudentIndicators = await studentIndicatorsResponse.json();
     const studentIndicators = jsonStudentIndicators.data.faults_by_indicator;
 
     return { ...studentInfo, periods: studentPeriods, indicators: studentIndicators };
   }
 
+  async function handleAddFault(indicator) {
+    setLoading(true);
+    const payload = {
+      indicator,
+      group_id: +groupId,
+      date: new Date().toISOString().slice(0, 10),
+    };
+
+    const response = await fetch(`${API_HOST}/students/${student.id}/faults`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    const result = await getStudentInfo();
+    setStudent(result);
+    setLoading(false);
+  }
+
   useEffect(() => {
     (async () => {
       const result = await getStudentInfo();
-      console.log(result);
       setStudent(result);
     })();
   }, []);
@@ -57,6 +77,8 @@ const StudentInfo = () => {
             </>
           )}
 
+          {/* {loading && <p>Registrando falta</p>} */}
+
           {student.indicators && (
             <>
               <h3>Indicadores de rezago</h3>
@@ -68,24 +90,27 @@ const StudentInfo = () => {
                     <th>Semáforo</th>
                     <th>Agregar</th>
                   </tr>
-                  {Object.entries(student.indicators).map(([key, value]) => (
-                    <tr key={key} className={style['indicator']}>
-                      <td>{key}</td>
-                      <td>{value}</td>
-                      <td>
-                        <div
-                          style={{
-                            width: '50%',
-                            height: '50%',
-                            backgroundColor: value >= 3 ? 'red' : value > 0 ? 'yellow' : 'green',
-                          }}
-                        ></div>
-                      </td>
-                      <td>
-                        <button>+</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {Object.entries(student.indicators).map(
+                    ([indicator, { numberFaults, faults }]) => (
+                      <tr key={indicator} className={style['indicator']}>
+                        <td>{indicator}</td>
+                        <td>{numberFaults}</td>
+                        <td>
+                          <div
+                            style={{
+                              width: '50%',
+                              height: '50%',
+                              backgroundColor:
+                                numberFaults >= 3 ? 'red' : numberFaults > 0 ? 'yellow' : 'green',
+                            }}
+                          ></div>
+                        </td>
+                        <td>
+                          <button onClick={() => handleAddFault(indicator)}>+</button>
+                        </td>
+                      </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </>
