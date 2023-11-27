@@ -1,0 +1,33 @@
+.student-info {
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.periods {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.period-box {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+table {
+  table-layout: auto;
+  text-align: left;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 2rem;
+}
+
+td {
+  height: 3rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}

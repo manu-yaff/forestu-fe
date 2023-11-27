@@ -58,8 +58,9 @@ export const StudentListManager = () => {
               </tr>
               {filteredStudents.map((student) => (
                 <tr
+                  style={{ cursor: 'pointer' }}
                   key={student.id}
-                  onClick={() => navigate(`/teacher/groups/${group.id}/students/${student.id}`)}
+                  onClick={() => navigate(`/manager/students/${student.id}`)}
                 >
                   <td>{student.name}</td>
                   <td>{student.faults.length}</td>

@@ -5,9 +5,10 @@ import { StudentsList } from './components/StudentList/StudentsList';
 import StudentInfo from './components/Students/StudentInfo/StudentInfo';
 import { ManagerGroups } from './components/ManagerGroups/ManagerGroups';
 import { StudentListManager } from './components/StudentListManager/StudentsListManager';
+import StudentDetailManager from './components/StudentDetailManager/StudentDetailManager';
 
-export const API_HOST = 'http://localhost:3000';
-// export const API_HOST = 'https://forestu-manuels-projects-c65674bc.vercel.app/';
+// export const API_HOST = 'http://localhost:3000';
+export const API_HOST = 'https://forestu-manuels-projects-c65674bc.vercel.app';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'manager/students/:id',
-    element: <div>here goes the view of a student for the manager</div>,
+    element: <StudentDetailManager />,
   },
 ]);
 
